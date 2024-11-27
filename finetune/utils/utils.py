@@ -1,6 +1,5 @@
 import json
 import os
-from shutil import copy
 
 import deepspeed
 import torch
@@ -89,12 +88,6 @@ def save_hf_format(model, tokenizer, args, sub_folder=""):
     tokenizer.save_pretrained(output_dir)
     print(os.listdir(output_dir))
     print(os.getcwd())
-
-    source = args.model_name_or_path
-    target = os.path.abspath(os.path.join(os.getcwd(), args.output_dir))
-    copy(os.path.join(source, "configuration_yi.py"), target)
-    copy(os.path.join(source, "modeling_yi.py"), target)
-    copy(os.path.join(source, "tokenization_yi.py"), target)
 
 
 def get_all_reduce_mean(tensor):
